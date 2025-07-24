@@ -1,28 +1,32 @@
-name: Deploy Portfolio via SSH and Rsync
+name: Deploy to Ubuntu Server
 
 on:
   push:
     branches:
-      - main  # Change if you deploy from a different branch
+      - main  # Change if your deploy branch is different
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
+      - name: Setup SSH private key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy with rsync
+      - name: Debug SSH connection
+        run: |
+          ssh -v -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} echo "✅ SSH works!"
+
+      - name: Deploy via rsync
         run: |
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no" \
             ./portfolio/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.TARGET_DIR }}
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/avtemur.uz/html
