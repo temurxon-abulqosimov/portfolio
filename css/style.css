@@ -28,11 +28,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 48px;
 }
 .logo {
   font-size: 1.7rem;
   font-weight: bold;
   letter-spacing: 1px;
+  margin-right: 32px;
 }
 nav ul {
   display: flex;
@@ -110,48 +112,92 @@ nav a.active, nav a:hover {
 .hero-tags {
   margin: 32px 0 0 0;
   text-align: center;
-  color: #b0b8c1;
-  font-size: 1rem;
-  letter-spacing: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
   padding-bottom: 16px;
+  background: none;
+  overflow: hidden;
+  position: relative;
+}
+.hero-tags-track {
+  display: flex;
+  min-width: 100%;
+  white-space: nowrap;
+  animation: marquee 18s linear infinite;
+  align-items: center;
+  gap: 0;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .hero-tags-track {
+    animation-duration: 28s;
+  }
 }
 .hero-tags span {
-  color: #f5f5f5;
-  font-weight: 500;
+  display: inline-block;
+  background: #23272f;
+  color: #6fffc2;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 6px 16px;
+  box-shadow: 0 2px 8px rgba(111,255,194,0.07);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  margin: 0;
+}
+.hero-tags span:hover {
+  background: #6fffc2;
+  color: #181c22;
+  transform: scale(1.07);
 }
 
 /* About Section */
 .about-section {
   margin-top: 48px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 .about-container {
   display: flex;
-  align-items: center;
-  gap: 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  background: #23272f;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(58,143,255,0.10);
+  padding: 40px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  transition: box-shadow 0.2s;
 }
-.about-img {
-  flex: 0 0 160px;
-  height: 160px;
-  background: linear-gradient(135deg, #6fffc2 0%, #3a8fff 100%);
-  border-radius: 8px;
-  position: relative;
-}
-.img-gradient {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #6fffc2 0%, #3a8fff 100%);
+.about-section:hover .about-container {
+  box-shadow: 0 8px 32px rgba(111,255,194,0.13);
 }
 .about-info h2 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 16px;
-  color: #f5f5f5;
+  color: #6fffc2;
+  letter-spacing: 1px;
 }
 .about-info p {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
   color: #b0b8c1;
+  line-height: 1.7;
+  background: rgba(24,28,34,0.7);
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(58,143,255,0.04);
 }
 .about-info b {
   color: #f5f5f5;
@@ -202,7 +248,8 @@ nav a.active, nav a:hover {
 
 /* Formation Section */
 .formation-section {
-  margin-top: 64px;
+  margin-top: 64px !important;
+  margin-bottom: 64px !important;
 }
 .formation-section h2 {
   font-size: 2rem;
@@ -358,6 +405,156 @@ footer {
   display: flex;
 }
 
+/* Projects Section */
+.projects-section {
+  margin-top: 64px;
+}
+.projects-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #f5f5f5;
+}
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.project-item {
+  background: #23272f;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.project-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(111,255,194,0.10);
+}
+.project-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #6fffc2;
+  margin-bottom: 8px;
+  display: block;
+}
+.project-tech {
+  display: inline-block;
+  background: #181c22;
+  color: #3a8fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 2px 10px;
+  margin-bottom: 10px;
+}
+.project-item p {
+  color: #b0b8c1;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Education Section */
+.education-section {
+  margin-top: 64px;
+}
+.education-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #f5f5f5;
+}
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.edu-item {
+  background: #23272f;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.edu-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(111,255,194,0.10);
+}
+.edu-date {
+  color: #6fffc2;
+  font-size: 1.1rem;
+  font-weight: 500;
+  min-width: 70px;
+}
+.edu-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+.edu-degree {
+  color: #6fffc2;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+  display: block;
+}
+.edu-desc {
+  color: #b0b8c1;
+  font-size: 0.98rem;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-top: 64px;
+}
+.achievements-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #f5f5f5;
+}
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.achievements-list li {
+  background: #23272f;
+  color: #6fffc2;
+  border-radius: 8px;
+  padding: 24px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(111,255,194,0.07);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.achievements-list li:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 6px 24px rgba(111,255,194,0.10);
+}
+.ach-title {
+  color: #6fffc2;
+  font-weight: 600;
+  font-size: 1.08rem;
+  display: block;
+  margin-bottom: 2px;
+}
+.ach-desc {
+  color: #b0b8c1;
+  font-size: 0.98rem;
+  display: block;
+  margin-top: 2px;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .hero-container, .about-container {
@@ -374,15 +571,24 @@ footer {
   .hamburger {
     display: flex;
   }
+  .about-container {
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 10px;
+    border-radius: 14px;
+  }
+  .about-img {
+    margin: 0 auto;
+  }
 }
 @media (max-width: 600px) {
   .container {
-    padding: 0 8px;
+    padding: 0 18px;
   }
   .hero-info h1 {
     font-size: 1.5rem;
   }
-  .about-info h2, .experience-section h2, .formation-section h2, .contact-section h2 {
+  .about-info h2, .experience-section h2, .formation-section h2, .contact-section h2, .projects-section h2 {
     font-size: 1.3rem;
   }
   .formation-item, .exp-item {
@@ -392,5 +598,83 @@ footer {
   .contact-link {
     padding: 10px 12px;
     font-size: 1rem;
+  }
+  .projects-list {
+    gap: 18px;
+  }
+  .project-item {
+    padding: 14px;
+  }
+  .project-title {
+    font-size: 1.05rem;
+  }
+  .project-tech {
+    font-size: 0.95rem;
+    padding: 2px 7px;
+    margin-bottom: 7px;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: block;
+  }
+  .project-item p {
+    font-size: 0.98rem;
+  }
+  .hero-tags {
+    gap: 6px;
+    padding-bottom: 10px;
+  }
+  .hero-tags span {
+    font-size: 0.95rem;
+    padding: 5px 10px;
+  }
+  .about-section {
+    padding: 0;
+    border-radius: 0;
+  }
+  .about-container {
+    padding: 20px 0;
+    gap: 14px;
+    border-radius: 10px;
+    margin-left: 32px !important;
+    margin-right: 32px !important;
+  }
+  .about-info h2 {
+    font-size: 1.3rem;
+  }
+  .about-info p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+  }
+  .education-section h2, .achievements-section h2 {
+    font-size: 1.3rem;
+  }
+  .edu-item {
+    padding: 12px 8px;
+    font-size: 1rem;
+  }
+  .achievements-list li {
+    padding: 10px 10px;
+    font-size: 0.98rem;
+  }
+  .edu-date {
+    font-size: 1rem;
+    min-width: 50px;
+  }
+  .edu-title {
+    font-size: 1rem;
+  }
+  .edu-degree {
+    font-size: 0.98rem;
+  }
+  .edu-desc {
+    font-size: 0.93rem;
+  }
+  .ach-title {
+    font-size: 0.98rem;
+  }
+  .ach-desc {
+    font-size: 0.93rem;
   }
 } 
