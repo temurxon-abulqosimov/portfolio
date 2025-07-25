@@ -589,9 +589,9 @@ footer {
 }
 @media (max-width: 600px) {
   .container {
-    padding: 0;
-    margin-left: 32px;
-    margin-right: 32px;
+    padding: 0 12px;
+    margin-left: 0;
+    margin-right: 0;
   }
   .hero-info h1 {
     font-size: 1.5rem;
@@ -642,7 +642,7 @@ footer {
   }
   
   .about-container {
-    padding: 20px 0;
+    padding: 16px 8px;
     gap: 14px;
     border-radius: 10px;
     margin: 0;
