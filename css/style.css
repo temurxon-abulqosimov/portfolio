@@ -583,7 +583,9 @@ footer {
 }
 @media (max-width: 600px) {
   .container {
-    padding: 0 18px;
+    padding: 0;
+    margin-left: 32px;
+    margin-right: 32px;
   }
   .hero-info h1 {
     font-size: 1.5rem;
@@ -636,8 +638,7 @@ footer {
     padding: 20px 0;
     gap: 14px;
     border-radius: 10px;
-    margin-left: 32px !important;
-    margin-right: 32px !important;
+    margin: 0;
   }
   .about-info h2 {
     font-size: 1.3rem;
