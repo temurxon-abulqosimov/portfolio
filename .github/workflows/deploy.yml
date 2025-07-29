@@ -23,8 +23,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            source ~/.nvm/nvm.sh
-            cd /var/www/—-
+            cd /var/www/html
             git pull origin main
             git checkout .
            
