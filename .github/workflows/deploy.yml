@@ -25,7 +25,6 @@ jobs:
           script: |
             source ~/.nvm/nvm.sh
             cd /var/www/—-
-            rm package-lock.json
             git pull origin main
             git checkout .
            
