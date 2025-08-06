@@ -27,7 +27,9 @@ jobs:
           port: 22
           script: |
             cd /var/www/html
-            rm -rf *
-            git clone https://github.com/temurxon-abulqosimov/portfolio.git .
-            chmod -R 755 /var/www/html
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone https://github.com/temurxon-abulqosimov/portfolio.git .
+            fi
            
