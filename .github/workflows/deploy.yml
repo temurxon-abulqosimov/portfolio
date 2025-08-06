@@ -2,7 +2,7 @@ name: Deploy
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [main]
 
@@ -15,11 +15,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Deploy using ssh
+        uses: actions/checkout@v2
 
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -27,13 +25,6 @@ jobs:
           port: 22
           script: |
             cd /var/www/html
-            if [ -d ".git" ]; then
-              git pull origin main
-            else
-              rm -rf .git
-              git init
-              git remote add origin https://github.com/temurxon-abulqosimov/portfolio.git
-              git fetch origin
-              git reset --hard origin/main
-            fi
+            git pull origin main
+            git checkout .
            
