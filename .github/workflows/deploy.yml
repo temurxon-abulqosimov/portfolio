@@ -27,6 +27,10 @@ jobs:
             if [ -d ".git" ]; then
               git pull origin main
             else
-              git clone https://github.com/temurxon-abulqosimov/portfolio.git .
+              rm -rf .git
+              git init
+              git remote add origin https://github.com/temurxon-abulqosimov/portfolio.git
+              git fetch origin
+              git reset --hard origin/main
             fi
            
