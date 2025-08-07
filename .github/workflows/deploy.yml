@@ -29,4 +29,7 @@ jobs:
             cd portfolio
             sudo cp -r * /var/www/html/
             sudo cp -r .* /var/www/html/ 2>/dev/null || true
+            sudo chown -R www-data:www-data /var/www/html/
+            sudo chmod -R 755 /var/www/html/
+            sudo systemctl reload nginx
            
