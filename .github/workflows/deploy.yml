@@ -23,14 +23,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /var/www/html
-            if [ -d ".git" ]; then
-              git pull origin main
-            else
-              rm -rf .git
-              git init
-              git remote add origin https://github.com/temurxon-abulqosimov/portfolio.git
-              git fetch origin
-              git reset --hard origin/main
-            fi
+            cd /tmp
+            rm -rf portfolio
+            git clone https://github.com/temurxon-abulqosimov/portfolio.git
+            cd portfolio
+            sudo cp -r * /var/www/html/
+            sudo cp -r .* /var/www/html/ 2>/dev/null || true
            
