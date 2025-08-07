@@ -27,11 +27,6 @@ jobs:
             echo "Current working directory: $(pwd)"
             echo "Web server status:"
             sudo systemctl status nginx --no-pager || echo "Nginx not running"
-            sudo systemctl status apache2 --no-pager || echo "Apache2 not running"
-            echo "Web root contents before deployment:"
-            ls -la /var/www/html/ || echo "Cannot access /var/www/html/"
-            echo "Nginx configuration:"
-            sudo nginx -T 2>/dev/null | grep "root" || echo "Cannot get nginx config"
             echo "=== STARTING DEPLOYMENT ==="
             cd /tmp
             rm -rf portfolio
@@ -39,18 +34,17 @@ jobs:
             cd portfolio
             echo "Repository contents:"
             ls -la
-            echo "=== COPYING FILES ==="
-            sudo rm -rf /var/www/html/*
-            sudo cp -r * /var/www/html/
-            sudo cp -r .* /var/www/html/ 2>/dev/null || true
-            echo "Web root contents after deployment:"
-            ls -la /var/www/html/
+            echo "=== COPYING FILES TO CORRECT LOCATION ==="
+            sudo rm -rf /var/www/avtemur.uz/html/*
+            sudo cp -r * /var/www/avtemur.uz/html/
+            sudo cp -r .* /var/www/avtemur.uz/html/ 2>/dev/null || true
+            echo "Correct web root contents after deployment:"
+            ls -la /var/www/avtemur.uz/html/
             echo "=== SETTING PERMISSIONS ==="
-            sudo chown -R www-data:www-data /var/www/html/
-            sudo chmod -R 755 /var/www/html/
-            echo "=== RESTARTING SERVICES ==="
+            sudo chown -R www-data:www-data /var/www/avtemur.uz/html/
+            sudo chmod -R 755 /var/www/avtemur.uz/html/
+            echo "=== RESTARTING NGINX ==="
             sudo systemctl restart nginx
-            sudo systemctl restart apache2 2>/dev/null || true
             echo "=== FINAL STATUS ==="
             sudo systemctl status nginx --no-pager
             echo "Deployment completed at: $(date)"
